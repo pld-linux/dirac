@@ -1,0 +1,129 @@
+diff -urN aa/dirac-0.3.1/configure.ac dirac-0.3.1/configure.ac
+--- aa/dirac-0.3.1/configure.ac	2004-06-08 18:03:15.000000000 +0200
++++ dirac-0.3.1/configure.ac	2004-08-02 20:08:39.074281184 +0200
+@@ -54,7 +54,7 @@
+ dnl -----------------------------------------------
+ 
+ AC_PROG_CXX
+-AC_PROG_RANLIB
++AC_PROG_LIBTOOL
+ AM_SANITY_CHECK
+ 
+ dnl -----------------------------------------------
+diff -urN aa/dirac-0.3.1/decoder/Makefile.am dirac-0.3.1/decoder/Makefile.am
+--- aa/dirac-0.3.1/decoder/Makefile.am	2004-05-14 19:20:33.000000000 +0200
++++ dirac-0.3.1/decoder/Makefile.am	2004-08-02 20:14:45.932510256 +0200
+@@ -3,5 +3,5 @@
+ 
+ dirac_decoder_SOURCES = decmain.cpp
+ 
+-LDADD = ../libdirac_decoder/libdirac_decoder.a ../libdirac_common/libdirac_common.a
++LDADD = ../libdirac_decoder/libdirac_decoder.la ../libdirac_common/libdirac_common.la
+ DEFS = -I. -I.. -I../.. -I$(srcdir)
+diff -urN aa/dirac-0.3.1/encoder/Makefile.am dirac-0.3.1/encoder/Makefile.am
+--- aa/dirac-0.3.1/encoder/Makefile.am	2004-05-14 19:20:33.000000000 +0200
++++ dirac-0.3.1/encoder/Makefile.am	2004-08-02 20:14:38.347663328 +0200
+@@ -3,5 +3,5 @@
+ 
+ dirac_encoder_SOURCES = encmain.cpp
+ 
+-LDADD = ../libdirac_encoder/libdirac_encoder.a ../libdirac_common/libdirac_common.a ../libdirac_motionest/libdirac_motionest.a
++LDADD = ../libdirac_encoder/libdirac_encoder.la ../libdirac_common/libdirac_common.la ../libdirac_motionest/libdirac_motionest.la
+ DEFS = -I.. -I. -I../.. -I$(srcdir)
+diff -urN aa/dirac-0.3.1/libdirac_common/Makefile.am dirac-0.3.1/libdirac_common/Makefile.am
+--- aa/dirac-0.3.1/libdirac_common/Makefile.am	2004-05-12 10:21:52.000000000 +0200
++++ dirac-0.3.1/libdirac_common/Makefile.am	2004-08-02 20:10:13.615908672 +0200
+@@ -11,9 +11,9 @@
+               mv_codec.cpp pic_io.cpp upconvert.cpp wavelet_utils.cpp \
+               cmd_line.cpp
+ 
+-lib_LIBRARIES = libdirac_common.a
++lib_LTLIBRARIES = libdirac_common.la
+ 
+-libdirac_common_a_SOURCES = $(h_sources) $(cpp_sources)
++libdirac_common_la_SOURCES = $(h_sources) $(cpp_sources)
+ 
+ library_includedir=$(includedir)/$(GENERIC_LIBRARY_NAME)
+ library_include_HEADERS = $(h_sources)
+diff -urN aa/dirac-0.3.1/libdirac_decoder/Makefile.am dirac-0.3.1/libdirac_decoder/Makefile.am
+--- aa/dirac-0.3.1/libdirac_decoder/Makefile.am	2004-05-11 18:11:17.000000000 +0200
++++ dirac-0.3.1/libdirac_decoder/Makefile.am	2004-08-02 20:10:47.919693704 +0200
+@@ -5,9 +5,9 @@
+ 
+ cpp_sources = comp_decompress.cpp frame_decompress.cpp seq_decompress.cpp
+ 
+-lib_LIBRARIES = libdirac_decoder.a
++lib_LTLIBRARIES = libdirac_decoder.la
+ 
+-libdirac_decoder_a_SOURCES = $(h_sources) $(cpp_sources)
++libdirac_decoder_la_SOURCES = $(h_sources) $(cpp_sources)
+ 
+ library_includedir=$(includedir)/$(GENERIC_LIBRARY_NAME)
+ library_include_HEADERS = $(h_sources)
+diff -urN aa/dirac-0.3.1/libdirac_encoder/Makefile.am dirac-0.3.1/libdirac_encoder/Makefile.am
+--- aa/dirac-0.3.1/libdirac_encoder/Makefile.am	2004-05-11 18:11:17.000000000 +0200
++++ dirac-0.3.1/libdirac_encoder/Makefile.am	2004-08-02 20:10:34.675707096 +0200
+@@ -5,9 +5,9 @@
+ 
+ cpp_sources = comp_compress.cpp frame_compress.cpp seq_compress.cpp
+ 
+-lib_LIBRARIES = libdirac_encoder.a
++lib_LTLIBRARIES = libdirac_encoder.la
+ 
+-libdirac_encoder_a_SOURCES = $(h_sources) $(cpp_sources)
++libdirac_encoder_la_SOURCES = $(h_sources) $(cpp_sources)
+ 
+ library_includedir=$(includedir)/$(GENERIC_LIBRARY_NAME)
+ library_include_HEADERS = $(h_sources)
+diff -urN aa/dirac-0.3.1/libdirac_motionest/Makefile.am dirac-0.3.1/libdirac_motionest/Makefile.am
+--- aa/dirac-0.3.1/libdirac_motionest/Makefile.am	2004-05-11 18:11:17.000000000 +0200
++++ dirac-0.3.1/libdirac_motionest/Makefile.am	2004-08-02 20:10:25.724067952 +0200
+@@ -5,9 +5,9 @@
+ 
+ cpp_sources = block_match.cpp downconvert.cpp me_mode_decn.cpp me_subpel.cpp me_utils.cpp motion_estimate.cpp
+ 
+-lib_LIBRARIES = libdirac_motionest.a
++lib_LTLIBRARIES = libdirac_motionest.la
+ 
+-libdirac_motionest_a_SOURCES = $(h_sources) $(cpp_sources)
++libdirac_motionest_la_SOURCES = $(h_sources) $(cpp_sources)
+ 
+ library_includedir=$(includedir)/$(GENERIC_LIBRARY_NAME)
+ library_include_HEADERS = $(h_sources)
+diff -urN aa/dirac-0.3.1/picheader/Makefile.am dirac-0.3.1/picheader/Makefile.am
+--- aa/dirac-0.3.1/picheader/Makefile.am	2004-05-14 19:20:33.000000000 +0200
++++ dirac-0.3.1/picheader/Makefile.am	2004-08-02 20:14:55.842003784 +0200
+@@ -2,5 +2,5 @@
+ 
+ make_header_SOURCES = headmain.cpp
+ 
+-LDADD = ../libdirac_common/libdirac_common.a
++LDADD = ../libdirac_common/libdirac_common.la
+ DEFS = -I.. -I. -I../.. -I$(srcdir)
+diff -urN aa/dirac-0.3.1/util/conversion/common/Makefile.am dirac-0.3.1/util/conversion/common/Makefile.am
+--- aa/dirac-0.3.1/util/conversion/common/Makefile.am	2004-05-28 16:15:54.000000000 +0200
++++ dirac-0.3.1/util/conversion/common/Makefile.am	2004-08-02 20:09:56.197556664 +0200
+@@ -5,9 +5,9 @@
+ 
+ cpp_sources = setstdiomode.cpp bitmap.cpp
+ 
+-lib_LIBRARIES = libconv_common.a
++lib_LTLIBRARIES = libconv_common.la
+ 
+-libconv_common_a_SOURCES = $(h_sources) $(cpp_sources)
++libconv_common_la_SOURCES = $(h_sources) $(cpp_sources)
+ 
+ library_includedir=$(includedir)/$(GENERIC_LIBRARY_NAME)
+ library_include_HEADERS = $(h_sources)
+diff -urN aa/dirac-0.3.1/util/conversion/Makefile.am dirac-0.3.1/util/conversion/Makefile.am
+--- aa/dirac-0.3.1/util/conversion/Makefile.am	2004-05-28 16:27:19.000000000 +0200
++++ dirac-0.3.1/util/conversion/Makefile.am	2004-08-02 20:14:16.012058856 +0200
+@@ -16,7 +16,7 @@
+ UYVYtoRGB_SOURCES=UYVYtoRGB.cpp
+ BMPtoRGB_SOURCES=BMPtoRGB.cpp
+ 
+-LDADD = common/libconv_common.a
++LDADD = common/libconv_common.la
+ DEFS = -I.. -I. -I../.. -Icommon/ -I$(srcdir)
+ 
+ SUBDIRS=common
