@@ -13,6 +13,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 Buildrequires:	doxygen
 BuildRequires:	libtool
+BuildRequires:	perl-base
 BuildRequires:	tetex-format-latex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -73,6 +74,11 @@ install -d $RPM_BUILD_ROOT%{_pkgconfigdir}
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{name}.pc $RPM_BUILD_ROOT%{_pkgconfigdir}
+
+%{__perl} -pi -e 's@libdirac_common/@@g' \
+	$RPM_BUILD_ROOT%{_includedir}/%{name}/*.h
+%{__perl} -pi -e 's@libdirac_motionest/@@g' \
+	$RPM_BUILD_ROOT%{_includedir}/%{name}/*.h
 
 rm -f doc/api/{Makefile*,dirac_api.doxygen,dirac_api_foot.html,dirac_api_head.html,html/{*.md5,graph_legend.dot}}
 
