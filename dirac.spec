@@ -28,7 +28,7 @@ wavelets, motion compensation and arithmetic coding.
 Dirac jest kodekiem ogólnego przeznaczenia dla obrazu o
 rozdzielczo¶ciach od QCIF (180x144) do HDTV (1920x1080). Kodek ten
 wykorzystuje fale elementarne (wavelets), kompensacjê ruchu (motion
-compensation) oraz kodowanie arytmentczne (arithmetic coding).
+compensation) oraz kodowanie arytmetyczne (arithmetic coding).
 
 %package devel
 Summary:	Header files for dirac library
