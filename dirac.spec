@@ -1,12 +1,12 @@
 Summary:	General purpose video codec
 Summary(pl):	Kodek obrazu ogólnego przeznaczenia
 Name:		dirac
-Version:	0.5.0
+Version:	0.5.1
 Release:	1
 License:	MPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/dirac/%{name}-%{version}.tar.gz
-# Source0-md5:	5874a2d2cdb74d3356483b1c47bb941e
+# Source0-md5:	487b07fef8e250ca243fd72dcc8a3a3d
 Patch0:		%{name}-am.patch
 URL:		http://www.bbc.co.uk/rd/projects/dirac/
 BuildRequires:	autoconf >= 2.50
@@ -17,6 +17,7 @@ BuildRequires:	libtool >= 2:1.5
 BuildRequires:	perl-base
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-format-latex
+BuildRequires:	tetex-metafont
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautocompressdoc	*.map
