@@ -1,19 +1,21 @@
 Summary:	General purpose video codec
 Summary(pl):	Kodek obrazu ogólnego przeznaczenia
 Name:		dirac
-Version:	0.4.3
+Version:	0.5.0
 Release:	1
-License:	Mozilla Public License
+License:	MPL
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-# Source0-md5:	b28f85349c09e6f82076f1cd0f75df3e
-Patch0:		%{name}-shared.patch
+Source0:	http://dl.sourceforge.net/dirac/%{name}-%{version}.tar.gz
+# Source0-md5:	5874a2d2cdb74d3356483b1c47bb941e
+Patch0:		%{name}-am.patch
 URL:		http://www.bbc.co.uk/rd/projects/dirac/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 Buildrequires:	doxygen
-BuildRequires:	libtool
+BuildRequires:	libstdc++-devel
+BuildRequires:	libtool >= 2:1.5
 BuildRequires:	perl-base
+BuildRequires:	tetex-dvips
 BuildRequires:	tetex-format-latex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -35,6 +37,7 @@ Summary:	Header files for dirac library
 Summary(pl):	Pliki nag³ówkowe biblioteki dirac
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libstdc++-devel
 
 %description devel
 Header files for dirac library.
@@ -68,17 +71,9 @@ Statyczna biblioteka dirac.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_pkgconfigdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-install %{name}.pc $RPM_BUILD_ROOT%{_pkgconfigdir}
-
-%{__perl} -pi -e 's@libdirac_common/@@g' \
-	$RPM_BUILD_ROOT%{_includedir}/%{name}/*.h
-%{__perl} -pi -e 's@libdirac_motionest/@@g' \
-	$RPM_BUILD_ROOT%{_includedir}/%{name}/*.h
 
 rm -f doc/api/{Makefile*,dirac_api.doxygen,dirac_api_foot.html,dirac_api_head.html,html/{*.md5,graph_legend.dot}}
 
