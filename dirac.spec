@@ -20,7 +20,7 @@ BuildRequires:	tetex-format-latex
 BuildRequires:	tetex-metafont
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_noautocompressdoc	*.map
+%define		_noautocompressdoc	*.map *.dot
 
 %description
 Dirac is a general-purpose video codec aimed at resolutions from QCIF
@@ -76,7 +76,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f doc/api/{Makefile*,dirac_api.doxygen,dirac_api_foot.html,dirac_api_head.html,html/{*.md5,graph_legend.dot}}
+rm -f doc/api/html/*.md5
+rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/dirac
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -92,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/api doc/programmers/programmers_guide.pdf doc/dirac_doc_howto.txt
+%doc doc/api/html doc/programmers/programmers_guide.pdf doc/dirac_doc_howto.txt
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %{_includedir}/%{name}
