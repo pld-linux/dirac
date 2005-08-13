@@ -2,7 +2,7 @@ Summary:	General purpose video codec
 Summary(pl):	Kodek obrazu ogólnego przeznaczenia
 Name:		dirac
 Version:	0.5.2
-Release:	1
+Release:	2
 License:	MPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/dirac/%{name}-%{version}.tar.gz
@@ -74,7 +74,8 @@ Statyczna biblioteka dirac.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	CPPUNITTESTS_DIR=
 
 rm -f doc/api/html/*.md5
 rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/dirac
