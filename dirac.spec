@@ -1,12 +1,12 @@
 Summary:	General purpose video codec
 Summary(pl):	Kodek obrazu ogólnego przeznaczenia
 Name:		dirac
-Version:	0.5.3
+Version:	0.5.4
 Release:	1
 License:	MPL v1.1 or GPL v2 or LGPL v2.1
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/dirac/%{name}-%{version}.tar.gz
-# Source0-md5:	6882ac9fe9b39edc2a2e666d36d674c3
+# Source0-md5:	f790a7220140fb41f6d90d2ced6a6a4d
 Patch0:		%{name}-am.patch
 URL:		http://www.bbc.co.uk/rd/projects/dirac/
 BuildRequires:	autoconf >= 2.50
