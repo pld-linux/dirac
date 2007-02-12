@@ -1,5 +1,5 @@
 Summary:	General purpose video codec
-Summary(pl):	Kodek obrazu ogÛlnego przeznaczenia
+Summary(pl.UTF-8):   Kodek obrazu og√≥lnego przeznaczenia
 Name:		dirac
 Version:	0.6.0
 Release:	1
@@ -27,15 +27,15 @@ Dirac is a general-purpose video codec aimed at resolutions from QCIF
 (180x144) to HDTV (1920x1080) progressive or interlaced. It uses
 wavelets, motion compensation and arithmetic coding.
 
-%description -l pl
-Dirac jest kodekiem ogÛlnego przeznaczenia dla obrazu o
-rozdzielczo∂ciach od QCIF (180x144) do HDTV (1920x1080). Kodek ten
-wykorzystuje fale elementarne (wavelets), kompensacjÍ ruchu (motion
+%description -l pl.UTF-8
+Dirac jest kodekiem og√≥lnego przeznaczenia dla obrazu o
+rozdzielczo≈õciach od QCIF (180x144) do HDTV (1920x1080). Kodek ten
+wykorzystuje fale elementarne (wavelets), kompensacjƒô ruchu (motion
 compensation) oraz kodowanie arytmetyczne (arithmetic coding).
 
 %package devel
 Summary:	Header files for dirac library
-Summary(pl):	Pliki nag≥Ûwkowe biblioteki dirac
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe biblioteki dirac
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libstdc++-devel
@@ -43,19 +43,19 @@ Requires:	libstdc++-devel
 %description devel
 Header files for dirac library.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe biblioteki dirac.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe biblioteki dirac.
 
 %package static
 Summary:	Static dirac library
-Summary(pl):	Statyczna biblioteka dirac
+Summary(pl.UTF-8):   Statyczna biblioteka dirac
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static dirac library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka dirac.
 
 %prep
