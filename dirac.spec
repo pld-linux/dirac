@@ -1,5 +1,5 @@
 Summary:	General purpose video codec
-Summary(pl.UTF-8):   Kodek obrazu ogólnego przeznaczenia
+Summary(pl.UTF-8):	Kodek obrazu ogólnego przeznaczenia
 Name:		dirac
 Version:	0.6.0
 Release:	1
@@ -35,7 +35,7 @@ compensation) oraz kodowanie arytmetyczne (arithmetic coding).
 
 %package devel
 Summary:	Header files for dirac library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki dirac
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki dirac
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libstdc++-devel
@@ -48,7 +48,7 @@ Pliki nagłówkowe biblioteki dirac.
 
 %package static
 Summary:	Static dirac library
-Summary(pl.UTF-8):   Statyczna biblioteka dirac
+Summary(pl.UTF-8):	Statyczna biblioteka dirac
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
