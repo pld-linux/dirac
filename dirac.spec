@@ -1,12 +1,12 @@
 Summary:	General purpose video codec
 Summary(pl.UTF-8):	Kodek obrazu ogólnego przeznaczenia
 Name:		dirac
-Version:	0.7.0
+Version:	0.8.0
 Release:	1
 License:	MPL v1.1 or GPL v2 or LGPL v2.1
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/dirac/%{name}-%{version}.tar.gz
-# Source0-md5:	cacc7a7c322ec50f7d4475466563a187
+# Source0-md5:	cdd0250425fdd757c0948b939e223cee
 Patch0:		%{name}-am.patch
 URL:		http://www.bbc.co.uk/rd/projects/dirac/
 BuildRequires:	autoconf >= 2.50
@@ -90,16 +90,22 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO doc/faq.html
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libdirac_decoder.so.*.*.*
+%attr(755,root,root) %{_libdir}/libdirac_encoder.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libdirac_decoder.so.0
+%attr(755,root,root) %ghost %{_libdir}/libdirac_encoder.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %doc doc/documentation/code/api/html doc/dirac_bitstream.txt
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/libdirac_decoder.so
+%attr(755,root,root) %{_libdir}/libdirac_encoder.so
+%{_libdir}/libdirac_decoder.la
+%{_libdir}/libdirac_encoder.la
 %{_includedir}/%{name}
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/dirac.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libdirac_decoder.a
+%{_libdir}/libdirac_encoder.a
