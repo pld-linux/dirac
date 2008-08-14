@@ -1,12 +1,12 @@
 Summary:	General purpose video codec
 Summary(pl.UTF-8):	Kodek obrazu ogólnego przeznaczenia
 Name:		dirac
-Version:	0.9.1
+Version:	0.10.0
 Release:	1
 License:	MPL v1.1 or GPL v2 or LGPL v2.1
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/dirac/%{name}-%{version}.tar.gz
-# Source0-md5:	629d91c3cab452f835e9eff8a67a7c28
+# Source0-md5:	82615435ae77cdf0a7e1ab6b4c30cb11
 Patch0:		%{name}-am.patch
 URL:		http://www.bbc.co.uk/rd/projects/dirac/
 BuildRequires:	autoconf >= 2.50
@@ -64,7 +64,7 @@ Statyczna biblioteka dirac.
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__automake}
 %configure
@@ -97,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/documentation/code/api/html doc/dirac_bitstream.txt
+%doc doc/documentation/code/api/html
 %attr(755,root,root) %{_libdir}/libdirac_decoder.so
 %attr(755,root,root) %{_libdir}/libdirac_encoder.so
 %{_libdir}/libdirac_decoder.la
