@@ -1,23 +1,30 @@
+#
+# Conditional build:
+%bcond_without	apidocs		# do not build and package API docs
+%bcond_without	static_libs	# don't build static libraries
+
 Summary:	General purpose video codec
 Summary(pl.UTF-8):	Kodek obrazu ogólnego przeznaczenia
 Name:		dirac
 Version:	1.0.2
-Release:	1
+Release:	2
 License:	MPL v1.1 or GPL v2 or LGPL v2.1
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/dirac/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/dirac/%{name}-%{version}.tar.gz
 # Source0-md5:	a57c2c5e58062d437d9ab13dffb28f0f
 Patch0:		%{name}-am.patch
 URL:		http://www.bbc.co.uk/rd/projects/dirac/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	doxygen
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	perl-base
+%if %{with apidocs}
+BuildRequires:	doxygen
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-format-latex
 BuildRequires:	tetex-metafont
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautocompressdoc	*.map *.dot
@@ -58,6 +65,17 @@ Static dirac library.
 %description static -l pl.UTF-8
 Statyczna biblioteka dirac.
 
+%package apidocs
+Summary:	dirac API documentation
+Summary(pl.UTF-8):	Dokumentacja API biblioteki dirac
+Group:		Documentation
+
+%description apidocs
+API and internal documentation for dirac library.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki dirac.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -67,7 +85,8 @@ Statyczna biblioteka dirac.
 %{__aclocal} -I m4
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	%{!?with_static_libs:--disable-static}
 %{__make}
 
 %install
@@ -89,16 +108,37 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/BMPtoRGB
+%attr(755,root,root) %{_bindir}/RGBtoBMP
+%attr(755,root,root) %{_bindir}/RGBtoUYVY
+%attr(755,root,root) %{_bindir}/RGBtoYUV411
+%attr(755,root,root) %{_bindir}/RGBtoYUV420
+%attr(755,root,root) %{_bindir}/RGBtoYUV422
+%attr(755,root,root) %{_bindir}/RGBtoYUV444
+%attr(755,root,root) %{_bindir}/UYVYtoRGB
+%attr(755,root,root) %{_bindir}/UYVYtoYUV422
+%attr(755,root,root) %{_bindir}/YUV411toRGB
+%attr(755,root,root) %{_bindir}/YUV420Down2x2
+%attr(755,root,root) %{_bindir}/YUV420ItoYUV422I
+%attr(755,root,root) %{_bindir}/YUV420pt75filter
+%attr(755,root,root) %{_bindir}/YUV420toRGB
+%attr(755,root,root) %{_bindir}/YUV420toYUV422
+%attr(755,root,root) %{_bindir}/YUV422ItoYUV420I
+%attr(755,root,root) %{_bindir}/YUV422toRGB
+%attr(755,root,root) %{_bindir}/YUV422toUYVY
+%attr(755,root,root) %{_bindir}/YUV422toYUV420
+%attr(755,root,root) %{_bindir}/YUV444toRGB
+%attr(755,root,root) %{_bindir}/create_dirac_testfile.pl
+%attr(755,root,root) %{_bindir}/dirac_decoder
+%attr(755,root,root) %{_bindir}/dirac_encoder
+%attr(755,root,root) %{_bindir}/dirac_instrumentation
 %attr(755,root,root) %{_libdir}/libdirac_decoder.so.*.*.*
-%attr(755,root,root) %{_libdir}/libdirac_encoder.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libdirac_decoder.so.0
+%attr(755,root,root) %{_libdir}/libdirac_encoder.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libdirac_encoder.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/html
-%doc doc/dirac_api_{foot,head}.html
 %attr(755,root,root) %{_libdir}/libdirac_decoder.so
 %attr(755,root,root) %{_libdir}/libdirac_encoder.so
 %{_libdir}/libdirac_decoder.la
@@ -106,7 +146,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/%{name}
 %{_pkgconfigdir}/dirac.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libdirac_decoder.a
 %{_libdir}/libdirac_encoder.a
+%endif
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%doc doc/html
+%doc doc/dirac_api_{foot,head}.html
+%endif
