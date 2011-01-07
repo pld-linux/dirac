@@ -7,7 +7,7 @@ Summary:	General purpose video codec
 Summary(pl.UTF-8):	Kodek obrazu ogólnego przeznaczenia
 Name:		dirac
 Version:	1.0.2
-Release:	2
+Release:	3
 License:	MPL v1.1 or GPL v2 or LGPL v2.1
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/dirac/%{name}-%{version}.tar.gz
@@ -40,11 +40,23 @@ rozdzielczościach od QCIF (180x144) do HDTV (1920x1080). Kodek ten
 wykorzystuje fale elementarne (wavelets), kompensację ruchu (motion
 compensation) oraz kodowanie arytmetyczne (arithmetic coding).
 
+%package libs
+Summary:	Libraries for dirac
+Group:		Libraries
+Conflicts:	dirac < 1.0.2-3
+
+%description libs
+Dirac is a general-purpose video codec aimed at resolutions from QCIF
+(180x144) to HDTV (1920x1080) progressive or interlaced. It uses
+wavelets, motion compensation and arithmetic coding.
+
+This package contains libraries for dirac.
+
 %package devel
 Summary:	Header files for dirac library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki dirac
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	libstdc++-devel
 
 %description devel
@@ -102,8 +114,8 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/dirac
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -132,6 +144,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dirac_decoder
 %attr(755,root,root) %{_bindir}/dirac_encoder
 %attr(755,root,root) %{_bindir}/dirac_instrumentation
+
+%files libs
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libdirac_decoder.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libdirac_decoder.so.0
 %attr(755,root,root) %{_libdir}/libdirac_encoder.so.*.*.*
