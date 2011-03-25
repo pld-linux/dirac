@@ -41,7 +41,8 @@ wykorzystuje fale elementarne (wavelets), kompensację ruchu (motion
 compensation) oraz kodowanie arytmetyczne (arithmetic coding).
 
 %package libs
-Summary:	Libraries for dirac
+Summary:	Libraries for dirac codec
+Summary(pl.UTF-8):	Biblioteki kodeka dirac
 Group:		Libraries
 Conflicts:	dirac < 1.0.2-3
 
@@ -51,6 +52,14 @@ Dirac is a general-purpose video codec aimed at resolutions from QCIF
 wavelets, motion compensation and arithmetic coding.
 
 This package contains libraries for dirac.
+
+%description libs -l pl.UTF-8
+Dirac jest kodekiem ogólnego przeznaczenia dla obrazu o
+rozdzielczościach od QCIF (180x144) do HDTV (1920x1080). Kodek ten
+wykorzystuje fale elementarne (wavelets), kompensację ruchu (motion
+compensation) oraz kodowanie arytmetyczne (arithmetic coding).
+
+Ten pakiet zawiera biblioteki kodeka dirac.
 
 %package devel
 Summary:	Header files for dirac library
