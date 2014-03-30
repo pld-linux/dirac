@@ -7,7 +7,7 @@ Summary:	General purpose video codec
 Summary(pl.UTF-8):	Kodek obrazu ogólnego przeznaczenia
 Name:		dirac
 Version:	1.0.2
-Release:	4
+Release:	5
 License:	MPL v1.1 or GPL v2 or LGPL v2.1
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/dirac/%{name}-%{version}.tar.gz
@@ -90,6 +90,9 @@ Statyczna biblioteka dirac.
 Summary:	dirac API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki dirac
 Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 API and internal documentation for dirac library.
@@ -118,7 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 	CPPUNITTESTS_DIR=
 
 rm -f doc/api/html/*.md5
-rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/dirac
+rm -rf $RPM_BUILD_ROOT%{_docdir}/dirac
 
 %clean
 rm -rf $RPM_BUILD_ROOT
