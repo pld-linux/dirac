@@ -90,9 +90,7 @@ Statyczna biblioteka dirac.
 Summary:	dirac API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki dirac
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 API and internal documentation for dirac library.
