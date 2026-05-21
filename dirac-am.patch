@@ -1,8 +1,8 @@
---- dirac-0.5.0/libdirac_motionest/Makefile.am.orig	2004-11-22 14:54:47.000000000 +0100
-+++ dirac-0.5.0/libdirac_motionest/Makefile.am	2004-12-03 23:07:48.958203264 +0100
+--- dirac-1.0.2.orig/libdirac_motionest/Makefile.am	2008-08-27 02:17:11.000000000 +0200
++++ dirac-1.0.2/libdirac_motionest/Makefile.am	2026-05-21 01:13:34.982885684 +0200
 @@ -7,15 +7,7 @@
  
- cpp_sources = block_match.cpp downconvert.cpp me_mode_decn.cpp me_subpel.cpp me_utils.cpp motion_estimate.cpp pixel_match.cpp
+ cpp_sources = block_match.cpp downconvert.cpp me_mode_decn.cpp me_subpel.cpp me_utils.cpp pixel_match.cpp me_utils_mmx.cpp downconvert_mmx.cpp
  
 -if USE_MSVC
 -noinst_LIBRARIES = libdirac_motionest.a
@@ -15,9 +15,9 @@
 -libdirac_motionest_a_SOURCES = $(h_sources) $(cpp_sources)
  
  libdirac_motionest_la_SOURCES = $(h_sources) $(cpp_sources)
- 
---- dirac-0.5.1/util/instrumentation/libdirac_instrument/Makefile.am.orig	2004-12-10 16:28:44.000000000 +0100
-+++ dirac-0.5.1/util/instrumentation/libdirac_instrument/Makefile.am	2005-03-03 13:03:26.297926120 +0100
+ libdirac_motionest_la_CXXFLAGS = $(AM_CXXFLAGS)
+--- dirac-1.0.2.orig/util/instrumentation/libdirac_instrument/Makefile.am	2004-12-10 16:28:44.000000000 +0100
++++ dirac-1.0.2/util/instrumentation/libdirac_instrument/Makefile.am	2026-05-21 01:13:50.916219017 +0200
 @@ -7,15 +7,7 @@
  
  cpp_sources = overlay.cpp draw_overlay.cpp motion_colour.cpp motion_arrows.cpp motion_colour_arrows.cpp sad.cpp pred_mode.cpp split_mode.cpp overlay_symbols.cpp gm_inliers.cpp
@@ -34,10 +34,10 @@
  
  libdirac_instrument_la_SOURCES = $(h_sources) $(cpp_sources)
  libdirac_instrument_la_CXXFLAGS = $(AM_CXXFLAGS)
---- dirac-0.6.0/libdirac_decoder/Makefile.am.orig	2006-04-20 12:41:57.000000000 +0200
-+++ dirac-0.6.0/libdirac_decoder/Makefile.am	2006-06-23 14:38:38.604440000 +0200
+--- dirac-1.0.2.orig/libdirac_decoder/Makefile.am	2008-08-14 04:18:22.000000000 +0200
++++ dirac-1.0.2/libdirac_decoder/Makefile.am	2026-05-21 01:13:55.769552351 +0200
 @@ -9,17 +9,7 @@
- cpp_sources = comp_decompress.cpp frame_decompress.cpp seq_decompress.cpp \
+ cpp_sources = comp_decompress.cpp picture_decompress.cpp seq_decompress.cpp \
               dirac_cppparser.cpp dirac_parser.cpp
  
 -if USE_MSVC
@@ -54,10 +54,10 @@
  
  libdirac_decoder_la_SOURCES = $(h_sources) $(cpp_sources)
  libdirac_decoder_la_CXXFLAGS = $(AM_CXXFLAGS)
---- dirac-0.6.0/libdirac_encoder/Makefile.am.orig	2006-04-20 12:41:57.000000000 +0200
-+++ dirac-0.6.0/libdirac_encoder/Makefile.am	2006-06-23 14:38:59.504440000 +0200
-@@ -10,20 +10,7 @@
-               quant_chooser.cpp seq_compress.cpp dirac_encoder.cpp
+--- dirac-1.0.2.orig/libdirac_encoder/Makefile.am	2008-06-19 12:05:52.000000000 +0200
++++ dirac-1.0.2/libdirac_encoder/Makefile.am	2026-05-21 01:14:00.512885684 +0200
+@@ -12,20 +12,7 @@
+               rate_control.cpp prefilter.cpp enc_picture.cpp enc_queue.cpp
  
  
 -if USE_MSVC
@@ -77,11 +77,11 @@
  
  libdirac_encoder_la_SOURCES = $(h_sources) $(cpp_sources)
  libdirac_encoder_la_CXXFLAGS = $(AM_CXXFLAGS)
---- dirac-0.5.1/libdirac_common/Makefile.am.orig	2004-12-10 16:28:42.000000000 +0100
-+++ dirac-0.5.1/libdirac_common/Makefile.am	2005-03-03 13:09:50.814470720 +0100
-@@ -14,17 +14,9 @@
-               cmd_line.cpp dirac_assertions.cpp
- 
+--- dirac-1.0.2.orig/libdirac_common/Makefile.am	2009-02-10 02:46:23.000000000 +0100
++++ dirac-1.0.2/libdirac_common/Makefile.am	2026-05-21 01:14:04.029552352 +0200
+@@ -19,16 +19,9 @@
+               wavelet_utils_mmx.cpp mot_comp_mmx.cpp \
+               video_format_defaults.cpp dirac_exception.cpp
  
 -if USE_MSVC
 -noinst_LIBRARIES = libdirac_common.a
@@ -93,13 +93,12 @@
  libdirac_common_la_SOURCES = $(h_sources) $(cpp_sources)
  libdirac_common_la_CXXFLAGS = $(AM_CXXFLAGS)
 -endif
--
  
  
- library_includedir=$(includedir)/$(GENERIC_LIBRARY_NAME)/libdirac_common
---- dirac-0.5.0/configure.ac.orig	2004-11-26 14:28:30.000000000 +0100
-+++ dirac-0.5.0/configure.ac	2004-12-03 23:21:01.371738096 +0100
-@@ -240,7 +240,7 @@
+ 
+--- dirac-1.0.2.orig/configure.ac	2009-02-10 01:16:37.000000000 +0100
++++ dirac-1.0.2/configure.ac	2026-05-21 01:14:05.019552352 +0200
+@@ -356,7 +356,7 @@
  dnl -----------------------------------------------
  dnl Check if static libraries to be used on non-Windows platforms
  dnl -----------------------------------------------

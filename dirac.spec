@@ -7,7 +7,7 @@ Summary:	General purpose video codec
 Summary(pl.UTF-8):	Kodek obrazu ogólnego przeznaczenia
 Name:		dirac
 Version:	1.0.2
-Release:	8
+Release:	9
 License:	MPL v1.1 or GPL v2 or LGPL v2.1
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/dirac/%{name}-%{version}.tar.gz
